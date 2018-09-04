@@ -42,14 +42,15 @@ new_hxl_tbl <- function(base_data, schema_df) {
 }
 
 # returns a
+# All columns doesnt need to have a tag
 find_schema_row <- function(tbl) {
   stopifnot(is.data.frame(tbl))
-  if (all(is_valid_tag(colnames(tbl)))) {
+  if (any(is_valid_tag(colnames(tbl)))) {
     return(0)
   } else {
     for (i in seq_len(pmin(nrow(tbl), 25))) {
       row <- unlist(apply(tbl[i, ], 2, as.character))
-      if (all(is_valid_tag(row))) {
+      if (any(is_valid_tag(row))) {
         return(i)
       }
     }
