@@ -102,3 +102,12 @@ hxl_select <- function(hxl, tag_pattern) {
   new_hxl_tbl(hxl[row_selector, col_idxes],
               schema_to_df(hxl_schema_chr(hxl)[col_idxes]))
 }
+
+library(tidyverse)
+data_url <- "http://ourairports.com/countries/VN/airports.hxl"
+raw <- readr::read_csv(data_url)
+glimpse(raw)
+hxl_data <- as_hxl(raw)
+glimpse(hxl_data)
+head(hxl_data)
+hxl_schema(hxl_data)
